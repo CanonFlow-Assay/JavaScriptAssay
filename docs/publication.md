@@ -26,7 +26,9 @@ on the public npm registry. See [the lifecycle guide](application-lifecycle.md).
 
 The read-only GitHub Actions workflow tests the recorded Node 20.20.2 and
 24.21.0 Linux lanes, runs the reservation mutation playground in each, and runs
-the exact pinned lifecycle consumer on Node 20/npm 10.8.2. Action versions are
+the exact pinned lifecycle consumer on Node 20/npm 10.8.2. Setup explicitly primes
+the pinned TypeScript 5.7.3 metadata/tarball cache before the consumer installs
+offline; a cold `npm ci` alone may cache only the lockfile tarball. Action versions are
 pinned by commit. The workflow retains generated evidence on failure as well as
 success, and failed commands remain failed CI steps. No workflow publishes a
 package, writes PR comments, changes source or grants release authority.
