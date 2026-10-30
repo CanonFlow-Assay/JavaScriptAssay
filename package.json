@@ -1,0 +1,49 @@
+{
+  "name": "javascript-assay",
+  "version": "0.1.0-preview.1",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "description": "Evidence-bounded functional JavaScript policy verifier",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "js-assay": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "playground": "node playground/run.js",
+    "playground:serve": "node playground/serve.js",
+    "lifecycle": "node eng/try-lifecycle.mjs",
+    "test:lifecycle": "node --test workflow/tests/*.test.mjs"
+  },
+  "dependencies": {
+    "typescript": "5.7.3"
+  },
+  "files": [
+    "src",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "AGENTS.md",
+    "workflow",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CanonFlow-Assay/JavaScriptAssay.git"
+  },
+  "homepage": "https://github.com/CanonFlow-Assay/JavaScriptAssay#readme",
+  "bugs": {
+    "url": "https://github.com/CanonFlow-Assay/JavaScriptAssay/issues"
+  },
+  "keywords": [
+    "javascript",
+    "static-analysis",
+    "verification",
+    "functional-programming"
+  ]
+}

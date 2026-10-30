@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "js-assay-policy/0.1",
+  "domainFiles": ["src/domain/reservation.js"],
+  "boundaryFiles": ["src/adapters/decode.js"],
+  "evidenceFiles": [
+    "requirements.json",
+    "tests/baseline.test.js",
+    "tests/expanded.test.js",
+    "run-tests.js"
+  ],
+  "requiredCommands": [["node", "run-tests.js"]]
+}

@@ -1,0 +1,58 @@
+name: JavaScriptAssay CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: javascript-assay-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qualify:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20.20.2', '24.21.0']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: Check pinned lifecycle npm
+        if: matrix.node == '20.20.2'
+        run: test "$(npm --version)" = '10.8.2'
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verifier regression tests
+        run: npm test
+      - name: Lifecycle protocol tests
+        run: npm run test:lifecycle
+      - name: Reservation playground and mutation controls
+        run: npm run playground
+      - name: Independent package consumer and repair lifecycle
+        if: matrix.node == '20.20.2'
+        run: npm run lifecycle -- "$PWD/artifacts/ci-lifecycle"
+      - name: Preserve source cleanliness
+        run: test -z "$(git status --porcelain)"
+      - name: Retain original qualification artifacts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: javascript-assay-node-${{ matrix.node }}-${{ github.sha }}
+          path: artifacts/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "js-assay-policy/0.1",
+  "domainFiles": ["src/domain/reservation.js"],
+  "boundaryFiles": ["src/adapters/decode.js", "src/adapters/stock-client.js"],
+  "evidenceFiles": [
+    "tests/original.test.mjs",
+    "tests/baseline.test.mjs",
+    "tests/contract.test.mjs",
+    "tests/resilience.test.mjs",
+    "contracts/reservation-v1.json",
+    "eng/test.mjs",
+    "eng/prepare.mjs",
+    "assay.app.json",
+    "requirements.json"
+  ],
+  "requiredCommands": [["node", "eng/test.mjs"]]
+}
