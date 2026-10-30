@@ -49,3 +49,6 @@ boundary. [Publication](docs/publication.md) describes CI, local package use and
 source/qualification identities. Changes are summarized in the
 [changelog](CHANGELOG.md). CI runs tests and actual local package consumers; it
 does not publish npm packages or approve an application release.
+
+The [phase-1 playground convergence map](playground/CONVERGENCE.md) records the
+next portable boundary candidate without broadening verifier authority.
