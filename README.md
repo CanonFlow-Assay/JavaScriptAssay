@@ -49,3 +49,10 @@ boundary. [Publication](docs/publication.md) describes CI, local package use and
 source/qualification identities. Changes are summarized in the
 [changelog](CHANGELOG.md). CI runs tests and actual local package consumers; it
 does not publish npm packages or approve an application release.
+
+## Estate evidence
+
+Use Node `24.21.0` for the authoring tests and reservation example.
+Use the pinned Node `20.20.2` and npm `10.8.2` for the independent
+application lifecycle. Retain the lifecycle consumer archive identity
+alongside its raw verifier receipts.
